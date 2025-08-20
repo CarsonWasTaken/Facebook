@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Clone</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo">facebook</a>
+            
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="Search Facebook" id="searchInput">
+                <div class="search-suggestions" id="searchSuggestions"></div>
+            </div>
+            
+            <div class="nav-icons">
+                <button class="nav-icon active" data-tooltip="Home">🏠</button>
+                <button class="nav-icon" data-tooltip="Friends">👥</button>
+                <button class="nav-icon" data-tooltip="Watch">📺</button>
+                <button class="nav-icon" data-tooltip="Marketplace">🛍️</button>
+                <button class="nav-icon" data-tooltip="Gaming">🎮</button>
+                <button class="nav-icon notification-icon" data-tooltip="Notifications">
+                    🔔
+                    <span class="notification-badge">3</span>
+                </button>
+                <button class="nav-icon" data-tooltip="Messenger">💬</button>
+                <div class="user-avatar dropdown-trigger" data-tooltip="Account">
+                    JD
+                    <div class="dropdown-menu user-menu">
+                        <div class="dropdown-item">
+                            <div class="user-avatar">JD</div>
+                            <div>
+                                <div>John Doe</div>
+                                <div class="dropdown-subtitle">See your profile</div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="dropdown-item">⚙️ Settings & Privacy</div>
+                        <div class="dropdown-item">❓ Help & Support</div>
+                        <div class="dropdown-item">🌙 Display & Accessibility</div>
+                        <hr>
+                        <div class="dropdown-item">🚪 Log Out</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Left Sidebar -->
+        <aside class="left-sidebar">
+            <a href="#" class="sidebar-item user-profile">
+                <div class="user-avatar">JD</div>
+                John Doe
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">👥</div>
+                Friends
+                <span class="sidebar-count">12</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">🕒</div>
+                Memories
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">📱</div>
+                Saved
+                <span class="sidebar-count">5</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">👥</div>
+                Groups
+                <span class="sidebar-count new">2</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">📺</div>
+                Video
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">🛍️</div>
+                Marketplace
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">📰</div>
+                Feeds
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">📅</div>
+                Events
+                <span class="sidebar-count">3</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">📄</div>
+                Pages
+            </a>
+            
+            <button class="sidebar-show-more" id="showMoreBtn">
+                <div class="sidebar-icon">⬇️</div>
+                See more
+            </button>
+            
+            <div class="sidebar-shortcuts">
+                <div class="sidebar-section-title">Your shortcuts</div>
+                <a href="#" class="sidebar-item">
+                    <div class="sidebar-icon group-icon">TC</div>
+                    Tech Community
+                </a>
+                <a href="#" class="sidebar-item">
+                    <div class="sidebar-icon group-icon">PH</div>
+                    Photography Lovers
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Feed -->
+        <main class="main-feed">
+            <!-- Stories -->
+            <div class="stories-container">
+                <div class="story create-story" id="createStoryBtn">
+                    <div class="story-background"></div>
+                    <div class="story-content">
+                        <div class="create-story-icon">+</div>
+                        <div class="story-text">Create Story</div>
+                    </div>
+                </div>
+                <div class="story" data-user="Alice">
+                    <div class="story-background" style="background: linear-gradient(45deg, #ff6b6b, #4ecdc4);"></div>
+                    <div class="story-avatar user-avatar">AL</div>
+                    <div class="story-text">Alice</div>
+                </div>
+                <div class="story" data-user="Bob">
+                    <div class="story-background" style="background: linear-gradient(45deg, #667eea, #764ba2);"></div>
+                    <div class="story-avatar user-avatar">BM</div>
+                    <div class="story-text">Bob</div>
+                </div>
+                <div class="story" data-user="Carol">
+                    <div class="story-background" style="background: linear-gradient(45deg, #f093fb, #f5576c);"></div>
+                    <div class="story-avatar user-avatar">CM</div>
+                    <div class="story-text">Carol</div>
+                </div>
+                <div class="story" data-user="David">
+                    <div class="story-background" style="background: linear-gradient(45deg, #4facfe, #00f2fe);"></div>
+                    <div class="story-avatar user-avatar">DS</div>
+                    <div class="story-text">David</div>
+                </div>
+            </div>
+
+            <!-- Post Creator -->
+            <div class="post-creator">
+                <div class="post-input-container">
+                    <div class="user-avatar">JD</div>
+                    <input type="text" class="post-input" placeholder="What's on your mind, John?" id="postInput">
+                </div>
+                <div class="post-actions">
+                    <button class="post-action" id="liveVideoBtn">
+                        <span style="color: #f02849;">📹</span>
+                        Live video
+                    </button>
+                    <button class="post-action" id="photoVideoBtn">
+                        <span style="color: #45bd62;">📷</span>
+                        Photo/video
+                    </button>
+                    <button class="post-action" id="feelingBtn">
+                        <span style="color: #f7b928;">😊</span>
+                        Feeling/activity
+                    </button>
+                </div>
+            </div>
+
+            <!-- Posts Container -->
+            <div class="posts-container" id="postsContainer">
+                <!-- Posts will be loaded here -->
+            </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">
+                    Contacts
+                    <div class="sidebar-actions">
+                        <button class="icon-btn" data-tooltip="New message">💬</button>
+                        <button class="icon-btn" data-tooltip="Search">🔍</button>
+                        <button class="icon-btn">⚙️</button>
+                    </div>
+                </div>
+                <div class="contacts-list" id="contactsList">
+                    <!-- Contacts will be loaded here -->
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Suggested for you</div>
+                <div class="suggestions-list" id="suggestionsList">
+                    <!-- Suggestions will be loaded here -->
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Birthdays</div>
+                <div class="birthday-item">
+                    <span>🎂</span>
+                    <span>Today is <strong>Emma Stone's</strong> birthday</span>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="postModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Create post</div>
+                <button class="close-btn" id="closePostModal">×</button>
+            </div>
+            <div class="modal-user-info">
+                <div class="user-avatar">JD</div>
+                <div>
+                    <div class="username">John Doe</div>
+                    <div class="post-privacy">
+                        <select id="privacySelect">
+                            <option value="public">🌍 Public</option>
+                            <option value="friends">👥 Friends</option>
+                            <option value="private">🔒 Only me</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <textarea class="modal-textarea" placeholder="What's on your mind, John?" id="modalTextarea"></textarea>
+            <div class="modal-options">
+                <div class="modal-option" id="addPhotoBtn">📷 Add Photo</div>
+                <div class="modal-option" id="addLocationBtn">📍 Check in</div>
+                <div class="modal-option" id="tagFriendsBtn">👥 Tag friends</div>
+                <div class="modal-option" id="addFeelingBtn">😊 Feeling/Activity</div>
+            </div>
+            <button class="modal-post-btn" id="modalPostBtn" disabled>Post</button>
+        </div>
+    </div>
+
+    <!-- Story Viewer Modal -->
+    <div class="modal story-modal" id="storyModal">
+        <div class="story-viewer">
+            <div class="story-header">
+                <div class="story-user-info">
+                    <div class="user-avatar" id="storyUserAvatar">AL</div>
+                    <div class="story-user-details">
+                        <div class="story-username" id="storyUsername">Alice</div>
+                        <div class="story-time" id="storyTime">2h</div>
+                    </div>
+                </div>
+                <button class="close-btn" id="closeStoryModal">×</button>
+            </div>
+            <div class="story-progress">
+                <div class="progress-bar"></div>
+            </div>
+            <div class="story-content" id="storyContent">
+                <div class="story-text">Having an amazing day! 🌟</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <span id="notificationText">Post created successfully!</span>
+            <button class="notification-close">×</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
