@@ -56,6 +56,7 @@ class FacebookApp {
         // Show welcome message
         setTimeout(() => {
             notifications.show('Welcome to Facebook Clone! 👋', 'info', 3000);
+            this.updateNotificationBadge();
         }, 1000);
     }
     
@@ -258,28 +259,28 @@ class FacebookApp {
     
     // Navigation methods
     goToHome() {
-        notifications.info('You\'re already on the Home page! 🏠');
-        this.scrollToTop();
+        pageManager.navigateTo('home');
+        notifications.info('Welcome back to your News Feed! 🏠');
     }
     
     goToFriends() {
-        notifications.info('Friends page - Feature coming soon! 👥');
+        pageManager.navigateTo('friends');
     }
     
     goToWatch() {
-        notifications.info('Watch page - Feature coming soon! 📺');
+        pageManager.navigateTo('watch');
     }
     
     goToMarketplace() {
-        notifications.info('Marketplace - Feature coming soon! 🛍️');
+        pageManager.navigateTo('marketplace');
     }
     
     goToGaming() {
-        notifications.info('Gaming page - Feature coming soon! 🎮');
+        pageManager.navigateTo('gaming');
     }
     
     showNotifications() {
-        notifications.info('You have 3 new notifications! 🔔');
+        pageManager.navigateTo('notifications');
     }
     
     goToMessenger() {
@@ -443,6 +444,20 @@ class FacebookApp {
             top: 0,
             behavior: 'smooth'
         });
+    }
+    
+    updateNotificationBadge() {
+        const badge = document.querySelector('.notification-badge');
+        const unreadCount = pagesDataManager.getUnreadNotificationCount();
+        
+        if (badge) {
+            if (unreadCount > 0) {
+                badge.textContent = unreadCount;
+                badge.style.display = 'flex';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
     }
     
     // Error handling
