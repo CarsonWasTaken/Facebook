@@ -1,0 +1,556 @@
+/* Responsive Design */
+
+/* Large Desktop */
+@media (min-width: 1400px) {
+    .main-container {
+        max-width: 1400px;
+        grid-template-columns: 320px 1fr 360px;
+    }
+    
+    .header-content {
+        max-width: 1400px;
+    }
+    
+    .search-container {
+        max-width: 400px;
+    }
+}
+
+/* Desktop */
+@media (max-width: 1199px) {
+    .main-container {
+        grid-template-columns: 260px 1fr 300px;
+        gap: 16px;
+    }
+    
+    .story {
+        min-width: 100px;
+        height: 180px;
+    }
+}
+
+/* Tablet Landscape */
+@media (max-width: 1023px) {
+    .main-container {
+        grid-template-columns: 240px 1fr 280px;
+        gap: 12px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    
+    .header-content {
+        padding: 8px 12px;
+    }
+    
+    .search-container {
+        max-width: 280px;
+    }
+    
+    .nav-icons {
+        gap: 6px;
+    }
+    
+    .nav-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+    
+    .sidebar-section {
+        padding: 12px;
+    }
+    
+    .post-creator,
+    .post {
+        margin-bottom: 12px;
+    }
+}
+
+/* Tablet Portrait */
+@media (max-width: 768px) {
+    .main-container {
+        grid-template-columns: 1fr;
+        padding-left: 8px;
+        padding-right: 8px;
+        gap: 16px;
+    }
+    
+    .left-sidebar,
+    .right-sidebar {
+        display: none;
+    }
+    
+    .header-content {
+        padding: 8px;
+        gap: 8px;
+    }
+    
+    .logo {
+        font-size: 24px;
+        min-width: 120px;
+    }
+    
+    .search-container {
+        max-width: 200px;
+    }
+    
+    .search-bar {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+    
+    .nav-icons {
+        gap: 4px;
+    }
+    
+    .nav-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+    
+    .user-avatar {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+    }
+    
+    /* Mobile Bottom Navigation */
+    .mobile-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--background-secondary);
+        border-top: 1px solid var(--border-color);
+        padding: 8px;
+        justify-content: space-around;
+        z-index: 1000;
+    }
+    
+    .mobile-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 8px;
+        text-decoration: none;
+        color: var(--text-secondary);
+        border-radius: var(--border-radius);
+        transition: var(--transition);
+        font-size: 12px;
+        min-width: 50px;
+    }
+    
+    .mobile-nav-item.active {
+        color: var(--primary-blue);
+    }
+    
+    .mobile-nav-item:hover {
+        background: var(--background-primary);
+    }
+    
+    .mobile-nav-icon {
+        font-size: 20px;
+        margin-bottom: 4px;
+    }
+    
+    .main-feed {
+        padding-bottom: 80px; /* Space for mobile nav */
+    }
+    
+    .stories-container {
+        margin: 0 -8px 16px;
+        padding: 4px 8px 8px;
+    }
+    
+    .story {
+        min-width: 90px;
+        height: 160px;
+    }
+    
+    .story-text {
+        font-size: 12px;
+    }
+    
+    .post-creator {
+        margin: 0 0 16px;
+    }
+    
+    .post-input {
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+    
+    .post-actions {
+        gap: 4px;
+    }
+    
+    .post-action {
+        padding: 6px;
+        font-size: 14px;
+    }
+    
+    .post {
+        margin-bottom: 12px;
+    }
+    
+    .post-header {
+        padding: 12px;
+    }
+    
+    .post-content {
+        padding: 0 12px 12px;
+        font-size: 14px;
+    }
+    
+    .post-stats {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    
+    .post-reactions {
+        padding: 4px 12px;
+        gap: 8px;
+    }
+    
+    .reaction-btn {
+        padding: 6px;
+        font-size: 14px;
+    }
+    
+    /* Modal adjustments for mobile */
+    .modal-content {
+        width: 95%;
+        margin: 10px;
+        max-height: 85vh;
+    }
+    
+    .modal-textarea {
+        font-size: 18px;
+        min-height: 100px;
+    }
+    
+    .modal-options {
+        gap: 8px;
+    }
+    
+    .modal-option {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+    
+    .story-modal .modal-content {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+    .header-content {
+        padding: 6px;
+    }
+    
+    .logo {
+        font-size: 20px;
+        min-width: 100px;
+    }
+    
+    .search-container {
+        max-width: 150px;
+    }
+    
+    .search-bar {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+    
+    .nav-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+    
+    .user-avatar {
+        width: 28px;
+        height: 28px;
+        font-size: 11px;
+    }
+    
+    .main-container {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+    
+    .stories-container {
+        margin: 0 -4px 16px;
+        padding: 4px;
+    }
+    
+    .story {
+        min-width: 80px;
+        height: 140px;
+    }
+    
+    .story-text {
+        font-size: 11px;
+    }
+    
+    .story-avatar {
+        width: 32px;
+        height: 32px;
+        top: 8px;
+        left: 8px;
+    }
+    
+    .post-creator,
+    .post {
+        border-radius: var(--border-radius-small);
+    }
+    
+    .post-input {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+    
+    .post-action {
+        font-size: 13px;
+        gap: 6px;
+    }
+    
+    .post-header {
+        padding: 10px;
+    }
+    
+    .post-username {
+        font-size: 14px;
+    }
+    
+    .post-time {
+        font-size: 12px;
+    }
+    
+    .post-content {
+        padding: 0 10px 10px;
+        font-size: 13px;
+    }
+    
+    .post-image {
+        height: 250px;
+    }
+    
+    .post-stats {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+    
+    .post-reactions {
+        padding: 4px 10px;
+        gap: 6px;
+    }
+    
+    .reaction-btn {
+        padding: 4px;
+        font-size: 13px;
+        gap: 4px;
+    }
+    
+    .mobile-nav {
+        padding: 6px;
+    }
+    
+    .mobile-nav-item {
+        padding: 6px;
+        font-size: 11px;
+        min-width: 45px;
+    }
+    
+    .mobile-nav-icon {
+        font-size: 18px;
+        margin-bottom: 2px;
+    }
+    
+    .modal-content {
+        width: 98%;
+        margin: 5px;
+        padding: 16px;
+    }
+    
+    .modal-title {
+        font-size: 18px;
+    }
+    
+    .modal-textarea {
+        font-size: 16px;
+        min-height: 80px;
+    }
+    
+    .notification {
+        right: 10px;
+        top: 70px;
+        max-width: calc(100vw - 20px);
+    }
+    
+    .notification-content {
+        padding: 10px 12px;
+    }
+}
+
+/* Mobile Extra Small */
+@media (max-width: 360px) {
+    .search-container {
+        max-width: 120px;
+    }
+    
+    .nav-icons {
+        gap: 2px;
+    }
+    
+    .nav-icon {
+        width: 26px;
+        height: 26px;
+        font-size: 13px;
+    }
+    
+    .story {
+        min-width: 70px;
+        height: 120px;
+    }
+    
+    .story-text {
+        font-size: 10px;
+    }
+    
+    .post-action span {
+        display: none; /* Hide text on very small screens */
+    }
+    
+    .reaction-btn span:not(:first-child) {
+        display: none; /* Hide text, keep emoji */
+    }
+    
+    .mobile-nav-item span {
+        display: none; /* Hide text labels */
+    }
+    
+    .mobile-nav-icon {
+        margin-bottom: 0;
+    }
+}
+
+/* Landscape Phone */
+@media (max-height: 500px) and (orientation: landscape) {
+    .main-container {
+        padding-top: 60px;
+    }
+    
+    .header-content {
+        padding: 4px 8px;
+    }
+    
+    .nav-icon,
+    .user-avatar {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .story {
+        height: 120px;
+    }
+    
+    .modal-content {
+        max-height: 90vh;
+    }
+    
+    .story-modal .modal-content {
+        height: 100vh;
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .post-image,
+    .story-background {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .story:hover {
+        transform: none;
+    }
+    
+    .user-avatar:hover {
+        transform: none;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-primary: #e4e6ea;
+        --text-secondary: #b0b3b8;
+        --background-primary: #18191a;
+        --background-secondary: #242526;
+        --border-color: #3a3b3c;
+        --hover-gray: #3a3b3c;
+    }
+    
+    .search-bar {
+        background: var(--background-secondary);
+        color: var(--text-primary);
+    }
+    
+    .post-image {
+        filter: brightness(0.9);
+    }
+    
+    .story-background {
+        filter: brightness(0.8);
+    }
+}
+
+/* Print Styles */
+@media print {
+    .header,
+    .left-sidebar,
+    .right-sidebar,
+    .stories-container,
+    .post-creator,
+    .post-reactions,
+    .modal,
+    .notification,
+    .mobile-nav {
+        display: none !important;
+    }
+    
+    .main-container {
+        grid-template-columns: 1fr;
+        padding-top: 0;
+        max-width: none;
+    }
+    
+    .post {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+    }
+    
+    .post-image {
+        max-height: 200px;
+    }
+}
