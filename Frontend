@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Clone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f0f2f5;
+            color: #1c1e21;
+        }
+
+        /* Header */
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #dadde1;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 16px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1877f2;
+            text-decoration: none;
+        }
+
+        .search-bar {
+            background: #f0f2f5;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 16px;
+            width: 240px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f0f2f5;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: background-color 0.2s;
+        }
+
+        .nav-icon:hover {
+            background: #e4e6ea;
+        }
+
+        .nav-icon.active {
+            background: #1877f2;
+            color: white;
+        }
+
+        /* Main Layout */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 72px;
+            display: grid;
+            grid-template-columns: 240px 1fr 280px;
+            gap: 16px;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        /* Left Sidebar */
+        .left-sidebar {
+            position: sticky;
+            top: 88px;
+            height: fit-content;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            text-decoration: none;
+            color: #1c1e21;
+        }
+
+        .sidebar-item:hover {
+            background: #e4e6ea;
+        }
+
+        .sidebar-icon {
+            width: 36px;
+            height: 36px;
+            margin-right: 12px;
+            border-radius: 50%;
+            background: #1877f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        /* Main Feed */
+        .main-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* Post Creator */
+        .post-creator {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 1px 2px rgba(0,0,0,.1);
+        }
+
+        .post-input-container {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #1877f2, #42a5f5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .post-input {
+            flex: 1;
+            background: #f0f2f5;
+            border: none;
+            border-radius: 24px;
+            padding: 12px 16px;
+            font-size: 16px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid #dadde1;
+            padding-top: 12px;
+        }
+
+        .post-action {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+            color: #65676b;
+            font-weight: 600;
+        }
+
+        .post-action:hover {
+            background: #f0f2f5;
+        }
+
+        /* Posts */
+        .post {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 2px rgba(0,0,0,.1);
+            overflow: hidden;
+        }
+
+        .post-header {
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .post-user-info {
+            flex: 1;
+        }
+
+        .post-username {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .post-time {
+            color: #65676b;
+            font-size: 13px;
+        }
+
+        .post-menu {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #65676b;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .post-menu:hover {
+            background: #f0f2f5;
+        }
+
+        .post-content {
+            padding: 0 16px 16px;
+            font-size: 15px;
+            line-height: 1.33;
+        }
+
+        .post-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .post-stats {
+            padding: 12px 16px;
+            border-top: 1px solid #dadde1;
+            border-bottom: 1px solid #dadde1;
+            display: flex;
+            justify-content: space-between;
+            color: #65676b;
+            font-size: 15px;
+        }
+
+        .post-reactions {
+            display: flex;
+            gap: 16px;
+            padding: 4px 16px;
+        }
+
+        .reaction-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+            color: #65676b;
+            font-weight: 600;
+        }
+
+        .reaction-btn:hover {
+            background: #f0f2f5;
+        }
+
+        .reaction-btn.liked {
+            color: #1877f2;
+        }
+
+        /* Right Sidebar */
+        .right-sidebar {
+            position: sticky;
+            top: 88px;
+            height: fit-content;
+        }
+
+        .sidebar-section {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 2px rgba(0,0,0,.1);
+        }
+
+        .sidebar-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #65676b;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .contact-item:hover {
+            background: #f0f2f5;
+        }
+
+        .online-indicator {
+            width: 12px;
+            height: 12px;
+            background: #42b883;
+            border-radius: 50%;
+            border: 2px solid white;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+
+        .contact-avatar {
+            position: relative;
+        }
+
+        /* Stories */
+        .stories-container {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            overflow-x: auto;
+            padding: 4px;
+        }
+
+        .story {
+            min-width: 112px;
+            height: 200px;
+            border-radius: 12px;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: flex-end;
+            transition: transform 0.2s;
+        }
+
+        .story:hover {
+            transform: scale(1.02);
+        }
+
+        .create-story {
+            background: white;
+            border: 1px solid #dadde1;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .story-text {
+            color: white;
+            font-weight: 600;
+            font-size: 13px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .story-avatar {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #dadde1;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .close-btn {
+            background: #f0f2f5;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-textarea {
+            width: 100%;
+            min-height: 120px;
+            border: none;
+            outline: none;
+            font-size: 24px;
+            resize: none;
+            font-family: inherit;
+        }
+
+        .modal-post-btn {
+            background: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 24px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 16px;
+            float: right;
+        }
+
+        .modal-post-btn:disabled {
+            background: #e4e6ea;
+            color: #bcc0c4;
+            cursor: not-allowed;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+
+            .left-sidebar,
+            .right-sidebar {
+                display: none;
+            }
+
+            .search-bar {
+                width: 180px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .post {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: #42b883;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transform: translateX(400px);
+            transition: transform 0.3s ease-out;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo">facebook</a>
+            
+            <input type="text" class="search-bar" placeholder="Search Facebook">
+            
+            <div class="nav-icons">
+                <button class="nav-icon active">🏠</button>
+                <button class="nav-icon">👥</button>
+                <button class="nav-icon">📺</button>
+                <button class="nav-icon">🛍️</button>
+                <button class="nav-icon">🎮</button>
+                <button class="nav-icon">🔔</button>
+                <button class="nav-icon">💬</button>
+                <div class="user-avatar">JD</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Left Sidebar -->
+        <aside class="left-sidebar">
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">👤</div>
+                John Doe
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">👥</div>
+                Friends
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">🕒</div>
+                Memories
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">📱</div>
+                Saved
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">👥</div>
+                Groups
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">📺</div>
+                Video
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">🛍️</div>
+                Marketplace
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">📰</div>
+                Feeds
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">📅</div>
+                Events
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">📄</div>
+                Pages
+            </a>
+        </aside>
+
+        <!-- Main Feed -->
+        <main class="main-feed">
+            <!-- Stories -->
+            <div class="stories-container">
+                <div class="story create-story">
+                    <div class="user-avatar">+</div>
+                    <div class="story-text">Create Story</div>
+                </div>
+                <div class="story">
+                    <div class="story-avatar user-avatar">AL</div>
+                    <div class="story-text">Alice</div>
+                </div>
+                <div class="story">
+                    <div class="story-avatar user-avatar">BM</div>
+                    <div class="story-text">Bob</div>
+                </div>
+                <div class="story">
+                    <div class="story-avatar user-avatar">CM</div>
+                    <div class="story-text">Carol</div>
+                </div>
+                <div class="story">
+                    <div class="story-avatar user-avatar">DS</div>
+                    <div class="story-text">David</div>
+                </div>
+            </div>
+
+            <!-- Post Creator -->
+            <div class="post-creator">
+                <div class="post-input-container">
+                    <div class="user-avatar">JD</div>
+                    <input type="text" class="post-input" placeholder="What's on your mind, John?" id="postInput">
+                </div>
+                <div class="post-actions">
+                    <button class="post-action">
+                        <span style="color: #f02849;">📹</span>
+                        Live video
+                    </button>
+                    <button class="post-action">
+                        <span style="color: #45bd62;">📷</span>
+                        Photo/video
+                    </button>
+                    <button class="post-action">
+                        <span style="color: #f7b928;">😊</span>
+                        Feeling/activity
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sample Posts -->
+            <div class="post">
+                <div class="post-header">
+                    <div class="user-avatar">AL</div>
+                    <div class="post-user-info">
+                        <div class="post-username">Alice Smith</div>
+                        <div class="post-time">2 hours ago · 🌍</div>
+                    </div>
+                    <button class="post-menu">⋯</button>
+                </div>
+                <div class="post-content">
+                    Just finished an amazing hiking trip in the mountains! The views were absolutely breathtaking. Nature has a way of putting everything into perspective. 🏔️ #hiking #nature #adventure
+                </div>
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=300&fit=crop" alt="Mountain landscape" class="post-image">
+                <div class="post-stats">
+                    <span>👍❤️😮 24 reactions</span>
+                    <span>5 comments · 2 shares</span>
+                </div>
+                <div class="post-reactions">
+                    <button class="reaction-btn">
+                        👍 Like
+                    </button>
+                    <button class="reaction-btn">
+                        💬 Comment
+                    </button>
+                    <button class="reaction-btn">
+                        📤 Share
+                    </button>
+                </div>
+            </div>
+
+            <div class="post">
+                <div class="post-header">
+                    <div class="user-avatar">BM</div>
+                    <div class="post-user-info">
+                        <div class="post-username">Bob Johnson</div>
+                        <div class="post-time">4 hours ago · 👥</div>
+                    </div>
+                    <button class="post-menu">⋯</button>
+                </div>
+                <div class="post-content">
+                    Excited to announce that our team just launched our new project! It's been months of hard work, but seeing it come together is incredibly rewarding. Thanks to everyone who supported us along the way! 🚀
+                </div>
+                <div class="post-stats">
+                    <span>👍❤️🎉 67 reactions</span>
+                    <span>12 comments · 8 shares</span>
+                </div>
+                <div class="post-reactions">
+                    <button class="reaction-btn">
+                        👍 Like
+                    </button>
+                    <button class="reaction-btn">
+                        💬 Comment
+                    </button>
+                    <button class="reaction-btn">
+                        📤 Share
+                    </button>
+                </div>
+            </div>
+
+            <div class="post">
+                <div class="post-header">
+                    <div class="user-avatar">CM</div>
+                    <div class="post-user-info">
+                        <div class="post-username">Carol Williams</div>
+                        <div class="post-time">6 hours ago · 🌍</div>
+                    </div>
+                    <button class="post-menu">⋯</button>
+                </div>
+                <div class="post-content">
+                    Recipe of the day: Homemade pizza! 🍕 There's nothing quite like making pizza from scratch. The dough, the sauce, the toppings - every step is pure joy. Who else loves cooking from scratch?
+                </div>
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=600&h=300&fit=crop" alt="Homemade pizza" class="post-image">
+                <div class="post-stats">
+                    <span>👍❤️😋 43 reactions</span>
+                    <span>18 comments · 4 shares</span>
+                </div>
+                <div class="post-reactions">
+                    <button class="reaction-btn">
+                        👍 Like
+                    </button>
+                    <button class="reaction-btn">
+                        💬 Comment
+                    </button>
+                    <button class="reaction-btn">
+                        📤 Share
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Contacts</div>
+                <div class="contact-item">
+                    <div class="contact-avatar">
+                        <div class="user-avatar">ES</div>
+                        <div class="online-indicator"></div>
+                    </div>
+                    Emma Stone
+                </div>
+                <div class="contact-item">
+                    <div class="contact-avatar">
+                        <div class="user-avatar">MJ</div>
+                        <div class="online-indicator"></div>
+                    </div>
+                    Mike Johnson
+                </div>
+                <div class="contact-item">
+                    <div class="contact-avatar">
+                        <div class="user-avatar">SL</div>
+                    </div>
+                    Sarah Lee
+                </div>
+                <div class="contact-item">
+                    <div class="contact-avatar">
+                        <div class="user-avatar">DT</div>
+                        <div class="online-indicator"></div>
+                    </div>
+                    Daniel Taylor
+                </div>
+                <div class="contact-item">
+                    <div class="contact-avatar">
+                        <div class="user-avatar">LW</div>
+                    </div>
+                    Lisa Wilson
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Suggested for you</div>
+                <div class="contact-item">
+                    <div class="user-avatar">TK</div>
+                    <div>
+                        <div>Tech Startup Group</div>
+                        <div style="font-size: 13px; color: #65676b;">2 mutual friends</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="user-avatar">PH</div>
+                    <div>
+                        <div>Photography Club</div>
+                        <div style="font-size: 13px; color: #65676b;">5 mutual friends</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Post Creation Modal -->
+    <div class="modal" id="postModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Create post</div>
+                <button class="close-btn" onclick="closePostModal()">×</button>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                <div class="user-avatar">JD</div>
+                <div>
+                    <div style="font-weight: 600;">John Doe</div>
+                    <div style="font-size: 13px; color: #65676b;">🌍 Public</div>
+                </div>
+            </div>
+            <textarea class="modal-textarea" placeholder="What's on your mind, John?" id="modalTextarea"></textarea>
+            <button class="modal-post-btn" id="modalPostBtn" disabled onclick="createPost()">Post</button>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        Post created successfully!
+    </div>
+
+    <script>
+        // Post creation functionality
+        function openPostModal() {
+            document.getElementById('postModal').classList.add('active');
+            document.getElementById('modalTextarea').focus();
+        }
+
+        function closePostModal() {
+            document.getElementById('postModal').classList.remove('active');
+            document.getElementById('modalTextarea').value = '';
+            document.getElementById('modalPostBtn').disabled = true;
+        }
+
+        function createPost() {
+            const content = document.getElementById('modalTextarea').value;
+            if (!content.trim()) return;
+
+            // Create new post element
+            const post = document.createElement('div');
+            post.className = 'post';
+            post.innerHTML = `
+                <div class="post-header">
+                    <div class="user-avatar">JD</div>
+                    <div class="post-user-info">
+                        <div class="post-username">John Doe</div>
+                        <div class="post-time">Just now · 🌍</div>
+                    </div>
+                    <button class="post-menu">⋯</button>
+                </div>
+                <div class="post-content">${content}</div>
+                <div class="post-stats">
+                    <span>0 reactions</span>
+                    <span>0 comments · 0 shares</span>
+                </div>
+                <div class="post-reactions">
+                    <button class="reaction-btn" onclick="toggleLike(this)">
+                        👍 Like
+                    </button>
+                    <button class="reaction-btn">
+                        💬 Comment
+                    </button>
+                    <button class="reaction-btn">
+                        📤 Share
+                    </button>
+                </div>
+            `;
+
+            // Add to feed
+            const mainFeed = document.querySelector('.main-feed');
+            const postCreator = document.querySelector('.post-creator');
+            mainFeed.insertBefore(post, postCreator.nextSibling);
+
+            // Close modal and show notification
+            closePostModal();
+            showNotification('Post created successfully!');
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        function toggleLike(btn) {
+            btn.classList.toggle('liked');
+            if (btn.classList.contains('liked')) {
+                btn.innerHTML = '👍 Liked';
+                btn.style.color = '#1877f2';
+            } else {
+                btn.innerHTML = '👍 Like';
+                btn.style.color = '#65676b';
+            }
+        }
+
+        // Event listeners
+        document.getElementById('postInput').addEventListener('click', openPostModal);
+
+        document.getElementById('modalTextarea').addEventListener('input', function() {
+            const btn = document.getElementById('modalPostBtn');
+            btn.disabled = !this.value.trim();
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('postModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePostModal();
+            }
+        });
+
+        // Like button functionality for existing posts
+        document.querySelectorAll('.reaction-btn').forEach(btn => {
+            if (btn.textContent.includes('Like')) {
+                btn.addEventListener('click', () => toggleLike(btn));
+            }
+        });
+
+        // Navigation icons
+        document.querySelectorAll('.nav-icon').forEach((icon, index) => {
+            icon.addEventListener('click', function() {
+                document.querySelectorAll('.nav-icon').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Add some interactivity to sidebar items
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                showNotification(`Navigated to ${this.textContent.trim()}`);
+            });
+        });
+
+        // Search functionality
+        document.querySelector('.search-bar').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                showNotification(`Searching for: ${this.value}`);
+                this.value = '';
+            }
+        });
+
+        // Story click functionality
+        document.querySelectorAll('.story').forEach(story => {
+            story.addEventListener('click', function() {
+                if (this.classList.contains('create-story')) {
+                    showNotification('Create story clicked!');
+                } else {
+                    const name = this.querySelector('.story-text').textContent;
+                    showNotification(`Viewing ${name}'s story`);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
